@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rysa - موقع مودات ماين كرافت</title>
+
+<!-- خط Rysa -->
+<link href="https://fonts.googleapis.com/css2?family=Rysa&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family: Arial;
+    background: url('background.png') center/cover no-repeat;
+    text-align: center;
+    font-size: 22px;
+    margin:0;
+    padding:0;
+}
+h1.site-name{
+    font-family: 'Rysa', cursive;
+    font-size: 70px;
+    color: #ff2a8a;
+    margin:20px 0;
+}
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:20px;
+}
+.card{
+    background:white;
+    width:300px;
+    margin:15px;
+    padding:15px;
+    border-radius:20px;
+    border: 4px solid #ff69b4;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+.card img{
+    width:100%;
+    border-radius:10px;
+}
+.card h2{
+    font-size:35px;
+    color:#333;
+}
+.card p{
+    font-size:22px;
+}
+.rating{
+    color: gold;
+    font-size:28px;
+    margin:5px 0;
+    cursor:pointer;
+}
+.comment-box input{
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+.comments{
+    font-size:18px;
+    max-height:100px;
+    overflow-y:auto;
+    border-top:1px solid #eee;
+    padding-top:5px;
+    text-align:left;
+}
+a{
+    display:block;
+    margin:5px 0;
+    color:#ff2a8a;
+    font-weight:bold;
+    text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<h1 class="site-name">Rysa</h1>
+
+<div class="container" id="modsContainer"></div>
+
+<script>
+// بيانات المودات
+const mods = [
+  { name:"مود السحر", desc:"مود يضيف قوى سحرية", img:"mod1.png", yt:"https://www.youtube.com/watch?v=EXAMPLE1", download:"https://www.mediafire.com/file/EXAMPLE1/mod1.zip", rating:5 },
+  { name:"مود الديناصورات", desc:"مود يضيف ديناصورات", img:"mod2.png", yt:"https://www.youtube.com/watch?v=EXAMPLE2", download:"https://www.mediafire.com/file/EXAMPLE2/mod2.zip", rating:4 },
+  { name:"مود الحيوانات", desc:"مود يضيف حيوانات", img:"mod3.png", yt:"https://www.youtube.com/watch?v=EXAMPLE3", download:"https://www.mediafire.com/file/EXAMPLE3/mod3.zip", rating:3 }
+];
+
+const container = document.getElementById('modsContainer');
+mods.forEach((mod,index)=>{
+  const card = document.createElement('div'); card.classList.add('card');
+  card.innerHTML=`
+    <img src="${mod.img}">
+    <h2>${mod.name}</h2>
+    <p>${mod.desc}</p>
+    <div class="rating" data-rating="${mod.rating}">${'⭐'.repeat(mod.rating)}${'☆'.repeat(5-mod.rating)}</div>
+    <a href="${mod.download}" target="_blank">تحميل المود</a>
+    <a href="${mod.yt}" target="_blank">مشاهدة الفيديو</a>
+    <div class="comment-box">
+      <input type="text" placeholder="اكتب تعليق..." onkeypress="if(event.key==='Enter') addComment(this)">
+      <div class="comments"></div>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+// إضافة التعليقات
+function addComment(input){
+  const comment = input.value.trim();
+  if(comment){
+    const commentDiv = input.nextElementSibling;
+    const p = document.createElement('p');
+    p.textContent = comment;
+    commentDiv.appendChild(p);
+    input.value='';
+  }
+}
+
+// تفاعل تقييم النجوم
+document.addEventListener('click', function(e){
+  if(e.target.classList.contains('rating')){
+    let stars = e.target;
+    let count = e.target.getAttribute('data-rating'); 
+    count = prompt("أدخل تقييمك من 1 إلى 5:", count);
+    count = Math.max(1, Math.min(5, parseInt(count)));
+    e.target.setAttribute('data-rating', count);
+    e.target.textContent = '⭐'.repeat(count)+'☆'.repeat(5-count);
+  }
+});
+</script>
+
+</body>
+</html>
