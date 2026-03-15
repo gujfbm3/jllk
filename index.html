@@ -76,7 +76,21 @@ a{
     color:#ff2a8a;
     font-weight:bold;
     text-decoration:none;
+}.video-btn{
+display:inline-block;
+background:#ff69b4;
+color:white;
+font-size:28px;
+font-weight:bold;
+padding:12px 20px;
+border-radius:15px;
+text-decoration:none;
+margin-top:10px;
 }
+
+.video-btn:hover{
+background:#ff2a8a;
+    }
 </style>
 </head>
 <body>
@@ -101,8 +115,7 @@ mods.forEach((mod,index)=>{
     <h2>${mod.name}</h2>
     <p>${mod.desc}</p>
     <div class="rating" data-rating="${mod.rating}">${'⭐'.repeat(mod.rating)}${'☆'.repeat(5-mod.rating)}</div>
-    <a href="${mod.download}" target="_blank">تحميل المود</a>
-    <a href="${mod.yt}" target="_blank">مشاهدة الفيديو</a>
+    <a href="${mod.download}" target="_blank">تحميل المود</a> <a href="${mod.yt}" target="_blank">مشاهدة الفيديو</a>
     <div class="comment-box">
       <input type="text" placeholder="اكتب تعليق..." onkeypress="if(event.key==='Enter') addComment(this)">
       <div class="comments"></div>
