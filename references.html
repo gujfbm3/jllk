@@ -101,4 +101,43 @@ background:#ff2a8a;
 </div>
 
 </body>
+  <script>
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.innerHTML="💗";
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"%";
+heart.style.bottom="0";
+heart.style.fontSize="30px";
+heart.style.animation="float 4s linear";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+},800);
+</script>
+
+<style>
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-600px);opacity:0;}
+}
+</style><script>
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.innerHTML="💗";
+heart.style.position="fixed";
+heart.style.left=Math.random()*100+"%";
+heart.style.bottom="0";
+heart.style.fontSize="30px";
+heart.style.animation="float 4s linear";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+},800);
+</script>
+
+<style>
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-600px);opacity:0;}
+}
+</style>
 </html>
